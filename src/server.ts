@@ -1,4 +1,4 @@
-import * as pizzaCtrl from './controllers/pizzaController';
+
 import { Response } from 'express';
 import express from 'express';
 
@@ -12,10 +12,14 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use("/", pizzaRoutes);
 
+
+
+
+
+
 app.get("/", async (req, res: Response) => {
     try {
-        const test = await pizzaCtrl.pizzaList(req, res)
-        res.status(200).json(test)
+        res.json({ ok: true })
     } catch (e) {
         console.log(e)
     }
