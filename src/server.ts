@@ -20,7 +20,7 @@ app.use("/", pizzaRoutes);
 
 app.get("/", async (req, res: Response) => {
     try {
-        res.json({ ok: true })
+        res.send({ ok: true })
     } catch (e) {
         console.log(e)
         res.status(500).json()
