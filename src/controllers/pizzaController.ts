@@ -2,11 +2,14 @@ import { Response, Request } from 'express';
 
 const pool = require("../dbconfig/dbConnector");
 export const pizzaList = async (req: Request, res: Response) => {
+  try {
+    pool.query('SELECT * FROM pizza', (error: any, results: any) => {
 
-  pool.query('SELECT * FROM pizza', (error: any, results: any) => {
-
-    res.status(200).json(results.rows)
-  })
+      res.status(200).json(results.rows)
+    })
+  } catch (e) {
+    res.status(500)
+  }
 
 
 }
@@ -14,11 +17,15 @@ export const pizzaList = async (req: Request, res: Response) => {
 
 export const addPizza = async (req: Request, res: Response) => {
   const { name, toppings, price } = req.body
-  pool.query(
-    "INSERT INTO pizza (name, toppings, price) VALUES ($1, $2, $3)",
-    [name, toppings, price], (error: any, results: any) => {
+  try {
+    pool.query(
+      "INSERT INTO pizza (name, toppings, price) VALUES ($1, $2, $3)",
+      [name, toppings, price], (error: any, results: any) => {
 
-      res.status(201).send(`Pizza added with ID: ${results.insertId}`)
-    })
+        res.status(201).send(`Pizza added with ID: ${results.insertId}`)
+      })
+  } catch (e) {
+    res.status(500)
+  }
 
 }
