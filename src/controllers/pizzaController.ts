@@ -4,8 +4,8 @@ import * as pizzaModel from '../models/pizzaModel';
 export const pizzaList = async (req: Request, res: Response) => {
 
   try {
-    const { rows } = await pizzaModel.getPizza();
-    return res.json(rows)
+    const rows = await pizzaModel.getPizza();
+    res.status(201).json({ data: rows })
   } catch (e) {
     console.log(e)
     res.status(500).json()
