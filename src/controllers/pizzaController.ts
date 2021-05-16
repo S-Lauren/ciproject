@@ -6,6 +6,7 @@ export const pizzaList = async (req: Request, res: Response) => {
   try {
     const rows = await pizzaModel.getPizza();
     res.status(201).json(rows)
+    return JSON.stringify(rows)
   } catch (e) {
     console.log(e)
     res.status(500).json()
