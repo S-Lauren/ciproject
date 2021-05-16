@@ -5,12 +5,12 @@ services:
     depends_on:
       - postgresdb
     environment:
-      DATABASE_URL: postgresql://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:${PG_PORT}/${PG_DB}
-      NODE_ENV: development
+      DATABASE_URL: ${DATABASE_URL}
+      NODE_ENV: production
       PORT: 3000
     ports:
       - "3000:3000"
-    command: npm run start
+    command: npm run build
     volumes:
       - .:/app/
       - /app/node_modules
