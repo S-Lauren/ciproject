@@ -20,11 +20,11 @@ const pool = new Pool({
 
 pool.connect();
 
-pool.query('SELECT * FROM pizza', (err: any, res: any) => {
-    if (err) throw err;
-    for (let row of res.rows) {
-        console.log(JSON.stringify(row));
-    }
+// pool.query('SELECT * FROM pizza', (err: any, res: any) => {
+//     if (err) throw err;
+//     for (let row of res.rows) {
+//         console.log(JSON.stringify(row));
+//     }
 
-});
+// });
 module.exports = pool;
