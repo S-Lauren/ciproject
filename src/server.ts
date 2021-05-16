@@ -22,6 +22,7 @@ app.get("/", async (req, res: Response) => {
         res.json({ ok: true })
     } catch (e) {
         console.log(e)
+        res.status(500).json()
     }
 })
 
