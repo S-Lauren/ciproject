@@ -5,7 +5,7 @@
   "main": "dist/src/server.js",
   "scripts": {
     "build": "tsc",
-    "start": "nodemon dist/src/server.js",
+    "start": "node dist/src/server.js",
     "test": "jest --config ./jest.config.js",
     "migrate": "nodemon ./dbconfig/migrate.js"
   },
