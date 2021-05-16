@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "dist/src/server.js",
+  "engines": {
+    "node": "15.x"
+  },
   "scripts": {
     "build": "tsc",
     "start": "nodemon dist/src/server.js",

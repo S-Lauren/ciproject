@@ -1,31 +1,28 @@
 import { Response, Request } from 'express';
+import * as pizzaModel from '../models/pizzaModel';
 
-const pool = require("../dbconfig/dbConnector");
 export const pizzaList = async (req: Request, res: Response) => {
+
   try {
-    pool.query('SELECT * FROM pizza', (error: any, results: any) => {
-
-      res.status(200).json(results.rows)
-    })
+    const rows = await pizzaModel.getPizza();
+    res.status(201).json(rows)
   } catch (e) {
-    res.status(500)
+    console.log(e)
+    res.status(500).json()
   }
-
 
 }
 
 
 export const addPizza = async (req: Request, res: Response) => {
-  const { name, toppings, price } = req.body
-  try {
-    pool.query(
-      "INSERT INTO pizza (name, toppings, price) VALUES ($1, $2, $3)",
-      [name, toppings, price], (error: any, results: any) => {
 
-        res.status(201).send(`Pizza added with ID: ${results.insertId}`)
-      })
+  try {
+    const { name, toppings, price } = req.body;
+    await pizzaModel.createPizza(name, toppings, price)
+    res.sendStatus(201);
   } catch (e) {
-    res.status(500)
+    console.log(e)
+    res.status(500).json()
   }
 
 }
