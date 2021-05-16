@@ -4,10 +4,10 @@ const pool = require("../dbconfig/dbConnector");
 
 export const getPizza = async () => {
   try {
-    const { rows } = await pool.query("SELECT * FROM pizza");
+    const rows = await pool.query("SELECT * FROM pizza");
     return rows;
   } catch (err) {
-    console.log(err.stack);
+    console.log(err);
   }
 }
 export const createPizza = async (name: string, toppings: string, price: number) => {
