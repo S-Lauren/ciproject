@@ -5,7 +5,7 @@ services:
     depends_on:
       - postgresdb
     environment:
-      DATABASE_URL: postgresql://${PG_USER}:${PG_PASSWORD}@localhost:${PG_PORT}
+      DATABASE_URL: postgresql://${PG_USER}:${PG_PASSWORD}@localhost:${PG_PORT}/${PG_DB}
       NODE_ENV: development
       PORT: 3000
     ports:
@@ -19,6 +19,7 @@ services:
     environment:
       POSTGRES_USER: ${PG_USER}
       POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: ${PG_DB}
     ports:
       - "5432:${PG_PORT}"
     volumes:
