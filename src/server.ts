@@ -33,7 +33,7 @@ app.get("/", async (req, res: Response) => {
 
 const isProduction = process.env.NODE_ENV === 'production'
 const origin = {
-    origin: isProduction ? 'https://ci-app-node.herokuapp.com' : '*'
+    origin: isProduction ? 'https://ci-app-node.herokuapp.com/' : '*'
 }
 
 app.use(cors(origin))
