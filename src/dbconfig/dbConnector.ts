@@ -16,8 +16,7 @@ const { Pool } = require('pg');
 
 const isProduction = process.env.NODE_ENV === 'production'
 
-const connectionString =
-    `postgres://${process.env.PG_USER}:${process.env.PG_PASSWORD}@${process.env.PG_HOST}:${process.env.PG_PORT}/${process.env.PG_DB}`
+const connectionString = `postgresql://${process.env.PG_USER}:${process.env.PG_PASSWORD}@${process.env.PG_HOST}:${process.env.PG_PORT}/${process.env.PG_DB}`
 
 const pool = new Pool({
     connectionString: isProduction ? process.env.DATABASE_URL : connectionString,
@@ -32,11 +31,11 @@ const pool = new Pool({
 
 pool.connect();
 
-// pool.query('SELECT * FROM pizza', (err: any, res: any) => {
-//     if (err) throw err;
-//     for (let row of res.rows) {
-//         console.log(JSON.stringify(row));
-//     }
+pool.query('SELECT * FROM pizza', (err: any, res: any) => {
+    if (err) throw err;
+    for (let row of res.rows) {
+        console.log(JSON.stringify(row));
+    }
 
-// });
+});
 module.exports = pool;
