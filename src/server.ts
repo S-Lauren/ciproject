@@ -4,7 +4,7 @@ import { Request, Response } from 'express'
 
 const app = express()
 const server = require('http').createServer(app)
-
+const cors = require("cors");
 const pizzaRoutes = require("./routes/pizzaRoutes");
 
 
@@ -28,6 +28,15 @@ app.get("/", async (req, res: Response) => {
 // app.get('/index', (request, response) => {
 //     response.sendfile('./src/index.html');
 // });
+
+
+
+const isProduction = process.env.NODE_ENV === 'production'
+const origin = {
+    origin: isProduction ? 'https://ci-app-node.herokuapp.com' : '*'
+}
+
+app.use(cors(origin))
 
 server.listen(PORT, () => console.log('Hoooooooooo le nouveau de manau '))
 
