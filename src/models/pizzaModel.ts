@@ -1,6 +1,6 @@
 
 
-const pool = require("../dbconfig/dbConnector");
+const { pool } = require("../dbconfig/dbConnector");
 
 export const getPizza = async () => {
   try {
