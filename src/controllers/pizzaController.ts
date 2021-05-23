@@ -13,7 +13,6 @@ export const pizzaList = async (req: Request, res: Response) => {
 
 }
 
-
 export const addPizza = async (req: Request, res: Response) => {
 
   try {

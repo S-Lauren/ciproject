@@ -7,5 +7,4 @@ CREATE TABLE pizza
     price INT NOT NULL
 )
 
-INSERT INTO pizza(name, toppings, price) 
-VALUES ('Yurk pizza', 'chocolate, honey, cheese, tomato pasta', 15);
+INSERT INTO pizza(name, toppings, price) VALUES ('Yurk pizza', 'chocolate, honey, cheese, tomato pasta', 15);
