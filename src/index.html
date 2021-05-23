@@ -12,11 +12,16 @@
     <script>
         let test = [];
         console.log("test")
-        fetch("http://localhost:3000/pizzas")
+        fetch("http://localhost:5000/pizzas")
         .then(res => res.json())
-        .then(data => test.push(data));
+        .then(data => {
+            return test.push(data.rows[0])
+        });
+        console.log(test[0].name)
 
-        <p>{test[0]}</p>
+          const h1 = document.createElement('h1')
+        h1.textContent = test; 
+       
     </script>
 </body>
 </html>
