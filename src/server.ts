@@ -1,11 +1,11 @@
 import express from 'express';
-import { Request, Response } from 'express'
+// import { Request, Response } from 'express'
 // const path = require("path")
 
 const app = express()
 const server = require('http').createServer(app)
 const cors = require("cors");
-// const pizzaRoutes = require("./routes/pizzaRoutes");
+const pizzaRoutes = require("./routes/pizzaRoutes");
 const { pool } = require("./dbconfig/dbConnector")
 
 const PORT = process.env.PORT || 5000
@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 5000
 // app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded());
-// app.get("/pizzas", pizzaRoutes);
+app.get("/pizzas", pizzaRoutes);
 
 
 // app.get("/", async (req, res: Response) => {
@@ -29,19 +29,19 @@ app.use(express.urlencoded());
 //     response.sendfile('./src/index.html');
 // });
 
-const getPizza = (request: Request, response: Response) => {
-  pool.query('SELECT * FROM pizza', (error: any, results: any) => {
-    if (error) {
-      throw error
-    }
-    response.status(200).json(results.rows)
-  })
-}
+// const getPizza = (request: Request, response: Response) => {
+//   pool.query('SELECT * FROM pizza', (error: any, results: any) => {
+//     if (error) {
+//       throw error
+//     }
+//     response.status(200).json(results.rows)
+//   })
+// }
 
-app
-  .route('/pizzas')
-  // GET endpoint
-  .get(getPizza)
+// app
+//   .route('/pizzas')
+//   // GET endpoint
+//   .get(getPizza)
 
 
 // Origin for cors
