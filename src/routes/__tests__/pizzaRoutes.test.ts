@@ -17,7 +17,7 @@ describe('pizzaRoutes', () => {
     const res = await supertest(app)
       .get('/pizzas')
     expect(res.statusCode).toEqual(201)
-    // expect(res.body.length).toBe(4);
+    expect(res.body.length).toBe(1);
     expect(res.body[0]).toHaveProperty("id");
     expect(res.body[0]).toHaveProperty("name");
     expect(res.body[0]).toHaveProperty('toppings')
