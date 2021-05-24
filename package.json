@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "dist/src/server.js",
+  "jest": {
+    "testEnvironment": "node"
+  },
   "engines": {
     "node": "15.x"
   },
@@ -10,7 +13,7 @@
     "build": "tsc",
     "start": "node dist/src/server.js",
     "start:dev": "nodemon dist/src/server.js",
-    "test": "jest --config ./jest.config.js",
+    "test": "NODE_ENV=test jest --testPathPattern='./__tests__/.*\\.test\\.ts$' --detectOpenHandles",
     "migrate": "nodemon ./dbconfig/migrate.js"
   },
   "devDependencies": {
