@@ -10,7 +10,7 @@ it('Testing to see if Jest works', () => {
 })
 
 describe('pizzaRoutes', () => {
-  it("should display a pizza 🍕 ", async () => {
+  it("should display a pizza 🍕 ", async (done) => {
     const res = await supertest(app)
       .get('/pizzas')
     expect(res.statusCode).toEqual(201)
@@ -19,6 +19,7 @@ describe('pizzaRoutes', () => {
     expect(res.body[0]).toHaveProperty("name");
     expect(res.body[0]).toHaveProperty('toppings')
     expect(res.body[0]).toHaveProperty('price')
+    done()
   })
 })
 
