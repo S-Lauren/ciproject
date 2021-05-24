@@ -1,35 +1,6 @@
-import express from 'express';
-import { Request, Response } from 'express'
 
-const app = express()
-const server = require('http').createServer(app)
-const cors = require("cors");
-const pizzaRoutes = require("./routes/pizzaRoutes");
-
+const server = require('./app');
 
 const PORT = process.env.PORT || 5000
 
-app.use(express.json());
-app.use(express.urlencoded());
-app.use("/", pizzaRoutes);
-
-
-app.get("/", async (req: Request, res: Response) => {
-  try {
-    res.send("Type '/pizzas' after the url to see the JSON Pizzass 🍕")
-  } catch (e) {
-    res.status(500).json()
-  }
-})
-
-// ORIGIN FOR CORS
-const isProduction = process.env.NODE_ENV === 'production'
-const origin = {
-  origin: isProduction ? 'https://ci-app-node.herokuapp.com' : '*'
-}
-
-app.use(cors(origin))
-
 server.listen(PORT, () => console.log('Hoooooooooo le nouveau de manau '))
-
-module.exports = server;
