@@ -1,0 +1,26 @@
+version: "3"
+services:
+  app:
+    build: .
+    depends_on:
+      - postgresdb
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      NODE_ENV: production
+      PORT: 3000
+    ports:
+      - "3000:3000"
+    command: npm start
+    volumes:
+      - .:/app/
+      - /app/node_modules
+  postgresdb:
+    image: postgres:10-alpine
+    environment:
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: ${PG_DB}
+    ports:
+      - "5432:${PG_PORT}"
+    volumes:
+      - ./src/migrations/dbinit.sql:/docker-entrypoint-initdb.d/dbinit.sql
